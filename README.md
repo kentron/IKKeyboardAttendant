@@ -49,6 +49,6 @@ _In SomeViewController.m_
 
 - (void)cellTextViewDidBecomeFirstResponder:(UITableViewCell *)cell
 {
-    self.attendant.visibleCell = cell;	// Update the current cell we want to be visible.
+    self.attendant.visibleCell = cell;	// Update the current cell you want to be visible.
 }
 ```
