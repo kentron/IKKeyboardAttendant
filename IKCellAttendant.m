@@ -11,7 +11,6 @@
 @interface IKCellAttendant ()
 
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) UIViewController *viewController;
 
 @property (readwrite, nonatomic) BOOL notificationsAdded;
 
@@ -26,10 +25,17 @@
     self = [super init];
     if (self)
     {
-        _viewController = viewController;
         _tableView = tableView;
+        
+        viewController.automaticallyAdjustsScrollViewInsets = NO;
+        [self addKeyboardNotifications];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Accessors
@@ -37,17 +43,6 @@
 - (void)setVisibleCell:(UITableViewCell *)visibleCell
 {
     _visibleCell = visibleCell;
-    
-    if (visibleCell)
-    {
-        self.viewController.automaticallyAdjustsScrollViewInsets = NO;
-        [self addKeyboardNotificationsIfNecessary];
-    }
-    else
-    {
-        self.viewController.automaticallyAdjustsScrollViewInsets = YES;
-        [self removeKeyboardNotificationsIfNecessary];
-    }
     
     [self.tableView scrollRectToVisible:visibleCell.frame animated:YES];
 }
@@ -71,26 +66,11 @@
 
 #pragma mark - Private
 
-- (void)addKeyboardNotificationsIfNecessary
+- (void)addKeyboardNotifications
 {
-    if (!self.notificationsAdded)
-    {
-        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-        [notificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-        self.notificationsAdded = YES;
-    }
-}
-
-- (void)removeKeyboardNotificationsIfNecessary
-{
-    if (self.notificationsAdded)
-    {
-        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter removeObserver:self forKeyPath:UIKeyboardWillShowNotification];
-        [notificationCenter removeObserver:self forKeyPath:UIKeyboardWillHideNotification];
-        self.notificationsAdded = NO;
-    }
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)animateTableViewWithDuration:(CGFloat)duration bottomValue:(CGFloat)bottomValue
