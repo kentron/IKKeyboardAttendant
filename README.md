@@ -8,7 +8,7 @@ Tired to having to add keyboard-notification-related boilerplate code to your UI
 
 Setup
 -----
-You can quickly integrate IKCellAttendant into your project via [**CocoaPods**](http://cocoapods.org/).
+You can quickly integrate IKCellAttendant into your project via [CocoaPods](http://cocoapods.org/).
 
 Usage
 -----
