@@ -2,7 +2,7 @@ IKCellAttendant
 ===============
 Keep your cells visible in a nice way despite keyboard's visibility on screen.
 
-https://raw.githubusercontent.com/inaka/IKCellAttendant/master/example.gif
+https://raw.githubusercontent.com/inaka/IKCellAttendant/pablo.WorkingBranch/example.gif
 
 Overview
 --------
