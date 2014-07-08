@@ -4,7 +4,7 @@ Keep your cells visible in a nice way despite keyboard's visibility on screen.
 
 Overview
 --------
-Tired to having to add keyboard-notification-related boilerplate code to your UIViewController in order to just keep your UITableViewCells always visible? IKCellAttendant will do all that boring job for you in a nice way, keeping your UIViewController's code cleaner.
+Tired from having to add all that keyboard-notification-related boilerplate code into your UIViewController class in order to just keep your UITableViewCells always visible? IKCellAttendant will do all that boring job for you in a nice way, keeping your UIViewController's code cleaner.
 
 Setup
 -----
