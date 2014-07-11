@@ -49,7 +49,6 @@ NSInteger const NumberOfRows = 50;
     
     cell.indexNumber = indexPath.row;
     
-    NSLog(@"Returning %@", cell);
     return cell;
 }
 
